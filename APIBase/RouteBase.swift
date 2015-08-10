@@ -90,7 +90,7 @@ public class RouteBase: NSObject {
         return result
     }
     
-    internal class func addParameter(inout addTo : String, name : String, value : String) {
+    public class func addParameter(inout addTo : String, name : String, value : String) {
         if count(name) > 0 &&
             count(value) > 0,
             let encodedValue = self.encodeString(value)
