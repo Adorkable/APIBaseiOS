@@ -1,0 +1,18 @@
+osx_image: beta-xcode6.3
+language: objective-c
+
+xcode_project: APIBase.xcodeproj
+xcode_sdk: iphonesimulator8.3
+install:
+- gem install cocoapods
+- gem install xcpretty
+
+script:
+- xcodebuild test -project APIBase.xcodeproj -scheme 'APIBase' -destination 'platform=iOS Simulator,name=iPhone Retina (4-inch)' | xcpretty -c
+- xcodebuild -project APIBase.xcodeproj -scheme 'Podspec Lint' -destination 'platform=iOS Simulator,name=iPhone Retina (4-inch)' | xcpretty -c
+
+env:
+    global:
+    - TIMEOUT=1000
+    matrix:
+    - USE_NETWORK=true
