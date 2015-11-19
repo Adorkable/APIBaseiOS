@@ -28,7 +28,7 @@ class RouteBaseTests: XCTestCase {
     }
     
     func testQuery() {
-        var base = RouteBase(timeoutInterval: RouteBase.defaultTimeout, cachePolicy: RouteBase.defaultCachePolicy)
+        let base = RouteBase(timeoutInterval: RouteBase.defaultTimeout, cachePolicy: RouteBase.defaultCachePolicy)
         
         XCTAssertEqual(RouteBase.SubclassShouldOverrideString, base.query, "Query should equal Subclass Should Override String")
     }
@@ -38,7 +38,7 @@ class RouteBaseTests: XCTestCase {
     }
     
     func testHTTPBody() {
-        var base = RouteBase(timeoutInterval: RouteBase.defaultTimeout, cachePolicy: RouteBase.defaultCachePolicy)
+        let base = RouteBase(timeoutInterval: RouteBase.defaultTimeout, cachePolicy: RouteBase.defaultCachePolicy)
         
         XCTAssertEqual(RouteBase.SubclassShouldOverrideString, base.httpBody, "HTTP Body should equal Subclass Should Override String")
     }

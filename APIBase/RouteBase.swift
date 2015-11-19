@@ -58,7 +58,7 @@ public class RouteBase: NSObject {
     
     // TODO: Swift 2.0 this should be a default implementation function
     internal class func encodeString(string : String) -> String? {
-        return string.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
+        return string.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
     }
     
     // TODO: Swift 2.0 this should be a default implementation function
@@ -78,7 +78,7 @@ public class RouteBase: NSObject {
                     query += self.query
                 }
                 
-                if count(query) > 0
+                if query.characters.count > 0
                 {
                     combinedPath += "?" + query
                 }
@@ -91,13 +91,13 @@ public class RouteBase: NSObject {
     }
     
     public class func addParameter(inout addTo : String, name : String, value : String) {
-        if count(name) > 0 &&
-            count(value) > 0,
+        if name.characters.count > 0 &&
+            value.characters.count > 0,
             let encodedValue = self.encodeString(value)
         {
-            var add = name + "=" + encodedValue
+            let add = name + "=" + encodedValue
             
-            if count(addTo) > 0 {
+            if addTo.characters.count > 0 {
                 addTo += "&" + add
             } else {
                 addTo = add
@@ -107,12 +107,12 @@ public class RouteBase: NSObject {
     }
     
     // TODO: Swift 2.0 this should be a default implementation function
-    public func dataTask(configureUrlRequest : ( (urlRequest : NSMutableURLRequest) -> Void)? = nil, completionHandler : (data : NSData?, urlResponse : NSURLResponse?, error : NSError?) -> Void ) -> NSURLSessionDataTask? {
+    public func dataTask(configureUrlRequest configureUrlRequest : ( (urlRequest : NSMutableURLRequest) -> Void)? = nil, completionHandler : (data : NSData?, urlResponse : NSURLResponse?, error : NSError?) -> Void ) -> NSURLSessionDataTask? {
         var result : NSURLSessionDataTask?
         
         if let url = self.buildUrl()
         {
-            var urlRequest = NSMutableURLRequest(URL: url, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
+            let urlRequest = NSMutableURLRequest(URL: url, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
             urlRequest.setValue("text/plain", forHTTPHeaderField: "Content-Type")
             
             if self.dynamicType.httpMethod != RouteBase.SubclassShouldOverrideString
@@ -154,17 +154,21 @@ public class RouteBase: NSObject {
             }, completionHandler: { (data, urlResponse, error) -> Void in
             if data != nil
             {
-                var error : NSError?
-                var string = NSString(data: data!, encoding: NSUTF8StringEncoding)
-                if let jsonObject: AnyObject = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.allZeros, error: &error)
+                do
                 {
-                    completionHandler(jsonObject: jsonObject, error: nil)
-                } else if let errorString = NSString(data: data!, encoding: NSUTF8StringEncoding) as? String
+                    if let jsonObject: AnyObject = try NSJSONSerialization.JSONObjectWithData(data!, options: [])
+                    {
+                        completionHandler(jsonObject: jsonObject, error: nil)
+                    } else if let errorString = NSString(data: data!, encoding: NSUTF8StringEncoding) as? String
+                    {
+                        completionHandler(jsonObject: nil, error: NSError(domain: errorString, code: 0, userInfo: nil) )
+                    } else
+                    {
+                        completionHandler(jsonObject: nil, error: NSError(domain: "Unknown error from request", code: 0, userInfo: nil) )
+                    }
+                } catch let error as NSError
                 {
-                    completionHandler(jsonObject: nil, error: NSError(domain: errorString, code: 0, userInfo: nil) )
-                } else
-                {
-                    completionHandler(jsonObject: nil, error: NSError(domain: "Unknown error from request", code: 0, userInfo: nil) )
+                    completionHandler(jsonObject: nil, error: error)
                 }
             } else
             {

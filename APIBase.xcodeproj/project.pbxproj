@@ -25,7 +25,8 @@
 		3C686FC71B79233100E6E326 /* APIBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C686FBB1B79233100E6E326 /* APIBase.framework */; };
 		3C686FCE1B79233100E6E326 /* RouteBaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C686FCD1B79233100E6E326 /* RouteBaseTests.swift */; };
 		3C686FDC1B79250500E6E326 /* RouteBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C686FDB1B79250500E6E326 /* RouteBase.swift */; };
-		3C686FE41B7933DD00E6E326 /* LICENSE.md in Sources */ = {isa = PBXBuildFile; fileRef = 3C686FE31B7933DD00E6E326 /* LICENSE.md */; };
+		3C686FE41B7933DD00E6E326 /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = 3C686FE31B7933DD00E6E326 /* LICENSE.md */; };
+		3CD330C71BFE88F500167264 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3C686FDA1B7924F900E6E326 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -186,7 +187,9 @@
 		3C686FB21B79233100E6E326 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastSwiftMigration = 0710;
+				LastSwiftUpdateCheck = 0710;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = Adorkable;
 				TargetAttributes = {
 					3C686FBA1B79233100E6E326 = {
@@ -224,6 +227,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C686FE41B7933DD00E6E326 /* LICENSE.md in Resources */,
+				3CD330C71BFE88F500167264 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,7 +262,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C686FE41B7933DD00E6E326 /* LICENSE.md in Sources */,
 				3C686FDC1B79250500E6E326 /* RouteBase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -303,6 +307,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -380,6 +385,7 @@
 				INFOPLIST_FILE = APIBase/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "cc.adorkable.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -395,6 +401,7 @@
 				INFOPLIST_FILE = APIBase/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "cc.adorkable.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -413,6 +420,7 @@
 				);
 				INFOPLIST_FILE = APIBaseTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "cc.adorkable.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -426,6 +434,7 @@
 				);
 				INFOPLIST_FILE = APIBaseTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "cc.adorkable.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
