@@ -14,23 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3C686FBA1B79233100E6E326"
-               BuildableName = "APIBase.framework"
-               BlueprintName = "APIBase"
-               ReferencedContainer = "container:APIBase.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3C686FC51B79233100E6E326"
-               BuildableName = "APIBaseTests.xctest"
-               BlueprintName = "APIBaseTests"
+               BlueprintIdentifier = "3C633E381BFE8ADA0095FEB9"
+               BuildableName = "APIBaseOSX.framework"
+               BlueprintName = "APIBaseOSX"
                ReferencedContainer = "container:APIBase.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3C686FC51B79233100E6E326"
-               BuildableName = "APIBaseTests.xctest"
-               BlueprintName = "APIBaseTests"
+               BlueprintIdentifier = "3C633E411BFE8ADA0095FEB9"
+               BuildableName = "APIBaseOSXTests.xctest"
+               BlueprintName = "APIBaseOSXTests"
                ReferencedContainer = "container:APIBase.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -56,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3C686FBA1B79233100E6E326"
-            BuildableName = "APIBase.framework"
-            BlueprintName = "APIBase"
+            BlueprintIdentifier = "3C633E381BFE8ADA0095FEB9"
+            BuildableName = "APIBaseOSX.framework"
+            BlueprintName = "APIBaseOSX"
             ReferencedContainer = "container:APIBase.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -78,9 +64,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3C686FBA1B79233100E6E326"
-            BuildableName = "APIBase.framework"
-            BlueprintName = "APIBase"
+            BlueprintIdentifier = "3C633E381BFE8ADA0095FEB9"
+            BuildableName = "APIBaseOSX.framework"
+            BlueprintName = "APIBaseOSX"
             ReferencedContainer = "container:APIBase.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -96,9 +82,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3C686FBA1B79233100E6E326"
-            BuildableName = "APIBase.framework"
-            BlueprintName = "APIBase"
+            BlueprintIdentifier = "3C633E381BFE8ADA0095FEB9"
+            BuildableName = "APIBaseOSX.framework"
+            BlueprintName = "APIBaseOSX"
             ReferencedContainer = "container:APIBase.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

@@ -6,10 +6,9 @@
 //  Copyright (c) 2015 Adorkable. All rights reserved.
 //
 
-import UIKit
 import XCTest
 
-import APIBase
+import APIBaseOSX
 
 // TODO: Test creating a subclass of RouteBase
 class RouteBaseTests: XCTestCase {

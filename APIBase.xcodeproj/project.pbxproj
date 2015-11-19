@@ -21,15 +21,25 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		3C633E431BFE8ADA0095FEB9 /* APIBaseOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C633E391BFE8ADA0095FEB9 /* APIBaseOSX.framework */; };
+		3C633E561BFE8BC00095FEB9 /* RouteBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C686FDB1B79250500E6E326 /* RouteBase.swift */; };
+		3C633E5A1BFE8BDF0095FEB9 /* RouteBaseiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C633E571BFE8BD50095FEB9 /* RouteBaseiOSTests.swift */; };
+		3C633E5B1BFE8BE40095FEB9 /* RouteBaseOSXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C633E581BFE8BD50095FEB9 /* RouteBaseOSXTests.swift */; };
 		3C686FC11B79233100E6E326 /* APIBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C686FC01B79233100E6E326 /* APIBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3C686FC71B79233100E6E326 /* APIBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C686FBB1B79233100E6E326 /* APIBase.framework */; };
-		3C686FCE1B79233100E6E326 /* RouteBaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C686FCD1B79233100E6E326 /* RouteBaseTests.swift */; };
+		3C686FC71B79233100E6E326 /* APIBaseiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C686FBB1B79233100E6E326 /* APIBaseiOS.framework */; };
 		3C686FDC1B79250500E6E326 /* RouteBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C686FDB1B79250500E6E326 /* RouteBase.swift */; };
 		3C686FE41B7933DD00E6E326 /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = 3C686FE31B7933DD00E6E326 /* LICENSE.md */; };
 		3CD330C71BFE88F500167264 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3C686FDA1B7924F900E6E326 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3C633E441BFE8ADA0095FEB9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3C686FB21B79233100E6E326 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3C633E381BFE8ADA0095FEB9;
+			remoteInfo = APIBaseOSX;
+		};
 		3C686FC81B79233100E6E326 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3C686FB21B79233100E6E326 /* Project object */;
@@ -40,12 +50,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3C686FBB1B79233100E6E326 /* APIBase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = APIBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3C686FBF1B79233100E6E326 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3C633E391BFE8ADA0095FEB9 /* APIBaseOSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = APIBaseOSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C633E421BFE8ADA0095FEB9 /* APIBaseOSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = APIBaseOSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C633E501BFE8B830095FEB9 /* InfoOSX.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = InfoOSX.plist; sourceTree = "<group>"; };
+		3C633E531BFE8B950095FEB9 /* InfoOSX.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = InfoOSX.plist; sourceTree = "<group>"; };
+		3C633E571BFE8BD50095FEB9 /* RouteBaseiOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteBaseiOSTests.swift; sourceTree = "<group>"; };
+		3C633E581BFE8BD50095FEB9 /* RouteBaseOSXTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteBaseOSXTests.swift; sourceTree = "<group>"; };
+		3C686FBB1B79233100E6E326 /* APIBaseiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = APIBaseiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C686FBF1B79233100E6E326 /* InfoiOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = InfoiOS.plist; sourceTree = "<group>"; };
 		3C686FC01B79233100E6E326 /* APIBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIBase.h; sourceTree = "<group>"; };
-		3C686FC61B79233100E6E326 /* APIBaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = APIBaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3C686FCC1B79233100E6E326 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3C686FCD1B79233100E6E326 /* RouteBaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteBaseTests.swift; sourceTree = "<group>"; };
+		3C686FC61B79233100E6E326 /* APIBaseiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = APIBaseiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C686FCC1B79233100E6E326 /* InfoiOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = InfoiOS.plist; sourceTree = "<group>"; };
 		3C686FD81B7924F900E6E326 /* Gemfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile; sourceTree = SOURCE_ROOT; };
 		3C686FD91B7924F900E6E326 /* AdorkableAPIBase.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = AdorkableAPIBase.podspec; sourceTree = SOURCE_ROOT; };
 		3C686FDA1B7924F900E6E326 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
@@ -55,6 +70,21 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3C633E351BFE8ADA0095FEB9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3C633E3F1BFE8ADA0095FEB9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C633E431BFE8ADA0095FEB9 /* APIBaseOSX.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3C686FB71B79233100E6E326 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -66,7 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C686FC71B79233100E6E326 /* APIBase.framework in Frameworks */,
+				3C686FC71B79233100E6E326 /* APIBaseiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,8 +115,10 @@
 		3C686FBC1B79233100E6E326 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3C686FBB1B79233100E6E326 /* APIBase.framework */,
-				3C686FC61B79233100E6E326 /* APIBaseTests.xctest */,
+				3C686FBB1B79233100E6E326 /* APIBaseiOS.framework */,
+				3C686FC61B79233100E6E326 /* APIBaseiOSTests.xctest */,
+				3C633E391BFE8ADA0095FEB9 /* APIBaseOSX.framework */,
+				3C633E421BFE8ADA0095FEB9 /* APIBaseOSXTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -109,7 +141,8 @@
 				3C686FE31B7933DD00E6E326 /* LICENSE.md */,
 				3C686FDA1B7924F900E6E326 /* README.md */,
 				3C686FDD1B792EB000E6E326 /* .travis.yml */,
-				3C686FBF1B79233100E6E326 /* Info.plist */,
+				3C686FBF1B79233100E6E326 /* InfoiOS.plist */,
+				3C633E501BFE8B830095FEB9 /* InfoOSX.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -117,7 +150,8 @@
 		3C686FCA1B79233100E6E326 /* APIBaseTests */ = {
 			isa = PBXGroup;
 			children = (
-				3C686FCD1B79233100E6E326 /* RouteBaseTests.swift */,
+				3C633E571BFE8BD50095FEB9 /* RouteBaseiOSTests.swift */,
+				3C633E581BFE8BD50095FEB9 /* RouteBaseOSXTests.swift */,
 				3C686FCB1B79233100E6E326 /* Supporting Files */,
 			);
 			path = APIBaseTests;
@@ -126,7 +160,8 @@
 		3C686FCB1B79233100E6E326 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				3C686FCC1B79233100E6E326 /* Info.plist */,
+				3C686FCC1B79233100E6E326 /* InfoiOS.plist */,
+				3C633E531BFE8B950095FEB9 /* InfoOSX.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -134,6 +169,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		3C633E361BFE8ADA0095FEB9 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3C686FB81B79233100E6E326 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -145,9 +187,45 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		3C686FBA1B79233100E6E326 /* APIBase */ = {
+		3C633E381BFE8ADA0095FEB9 /* APIBaseOSX */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3C686FD11B79233100E6E326 /* Build configuration list for PBXNativeTarget "APIBase" */;
+			buildConfigurationList = 3C633E4A1BFE8ADA0095FEB9 /* Build configuration list for PBXNativeTarget "APIBaseOSX" */;
+			buildPhases = (
+				3C633E341BFE8ADA0095FEB9 /* Sources */,
+				3C633E351BFE8ADA0095FEB9 /* Frameworks */,
+				3C633E361BFE8ADA0095FEB9 /* Headers */,
+				3C633E371BFE8ADA0095FEB9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = APIBaseOSX;
+			productName = APIBaseOSX;
+			productReference = 3C633E391BFE8ADA0095FEB9 /* APIBaseOSX.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		3C633E411BFE8ADA0095FEB9 /* APIBaseOSXTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3C633E4D1BFE8ADA0095FEB9 /* Build configuration list for PBXNativeTarget "APIBaseOSXTests" */;
+			buildPhases = (
+				3C633E3E1BFE8ADA0095FEB9 /* Sources */,
+				3C633E3F1BFE8ADA0095FEB9 /* Frameworks */,
+				3C633E401BFE8ADA0095FEB9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3C633E451BFE8ADA0095FEB9 /* PBXTargetDependency */,
+			);
+			name = APIBaseOSXTests;
+			productName = APIBaseOSXTests;
+			productReference = 3C633E421BFE8ADA0095FEB9 /* APIBaseOSXTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3C686FBA1B79233100E6E326 /* APIBaseiOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3C686FD11B79233100E6E326 /* Build configuration list for PBXNativeTarget "APIBaseiOS" */;
 			buildPhases = (
 				3C686FB61B79233100E6E326 /* Sources */,
 				3C686FB71B79233100E6E326 /* Frameworks */,
@@ -158,14 +236,14 @@
 			);
 			dependencies = (
 			);
-			name = APIBase;
+			name = APIBaseiOS;
 			productName = APIBase;
-			productReference = 3C686FBB1B79233100E6E326 /* APIBase.framework */;
+			productReference = 3C686FBB1B79233100E6E326 /* APIBaseiOS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		3C686FC51B79233100E6E326 /* APIBaseTests */ = {
+		3C686FC51B79233100E6E326 /* APIBaseiOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3C686FD41B79233100E6E326 /* Build configuration list for PBXNativeTarget "APIBaseTests" */;
+			buildConfigurationList = 3C686FD41B79233100E6E326 /* Build configuration list for PBXNativeTarget "APIBaseiOSTests" */;
 			buildPhases = (
 				3C686FC21B79233100E6E326 /* Sources */,
 				3C686FC31B79233100E6E326 /* Frameworks */,
@@ -176,9 +254,9 @@
 			dependencies = (
 				3C686FC91B79233100E6E326 /* PBXTargetDependency */,
 			);
-			name = APIBaseTests;
+			name = APIBaseiOSTests;
 			productName = APIBaseTests;
-			productReference = 3C686FC61B79233100E6E326 /* APIBaseTests.xctest */;
+			productReference = 3C686FC61B79233100E6E326 /* APIBaseiOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -192,6 +270,12 @@
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = Adorkable;
 				TargetAttributes = {
+					3C633E381BFE8ADA0095FEB9 = {
+						CreatedOnToolsVersion = 7.1.1;
+					};
+					3C633E411BFE8ADA0095FEB9 = {
+						CreatedOnToolsVersion = 7.1.1;
+					};
 					3C686FBA1B79233100E6E326 = {
 						CreatedOnToolsVersion = 6.4;
 					};
@@ -215,14 +299,30 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3C686FBA1B79233100E6E326 /* APIBase */,
-				3C686FC51B79233100E6E326 /* APIBaseTests */,
+				3C686FBA1B79233100E6E326 /* APIBaseiOS */,
+				3C686FC51B79233100E6E326 /* APIBaseiOSTests */,
+				3C633E381BFE8ADA0095FEB9 /* APIBaseOSX */,
+				3C633E411BFE8ADA0095FEB9 /* APIBaseOSXTests */,
 				3C686FDE1B792F1500E6E326 /* Podspec Lint */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3C633E371BFE8ADA0095FEB9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3C633E401BFE8ADA0095FEB9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3C686FB91B79233100E6E326 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -258,6 +358,22 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3C633E341BFE8ADA0095FEB9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C633E561BFE8BC00095FEB9 /* RouteBase.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3C633E3E1BFE8ADA0095FEB9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C633E5B1BFE8BE40095FEB9 /* RouteBaseOSXTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3C686FB61B79233100E6E326 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -270,21 +386,98 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C686FCE1B79233100E6E326 /* RouteBaseTests.swift in Sources */,
+				3C633E5A1BFE8BDF0095FEB9 /* RouteBaseiOSTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3C633E451BFE8ADA0095FEB9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3C633E381BFE8ADA0095FEB9 /* APIBaseOSX */;
+			targetProxy = 3C633E441BFE8ADA0095FEB9 /* PBXContainerItemProxy */;
+		};
 		3C686FC91B79233100E6E326 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3C686FBA1B79233100E6E326 /* APIBase */;
+			target = 3C686FBA1B79233100E6E326 /* APIBaseiOS */;
 			targetProxy = 3C686FC81B79233100E6E326 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		3C633E4B1BFE8ADA0095FEB9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = APIBase/InfoOSX.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = cc.adorkable.APIBaseOSX;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		3C633E4C1BFE8ADA0095FEB9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = APIBase/InfoOSX.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = cc.adorkable.APIBaseOSX;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		3C633E4E1BFE8ADA0095FEB9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = APIBaseTests/InfoOSX.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = cc.adorkable.APIBaseOSXTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		3C633E4F1BFE8ADA0095FEB9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = APIBaseTests/InfoOSX.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = cc.adorkable.APIBaseOSXTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		3C686FCF1B79233100E6E326 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -382,7 +575,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = APIBase/Info.plist;
+				INFOPLIST_FILE = APIBase/InfoiOS.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cc.adorkable.$(PRODUCT_NAME:rfc1034identifier)";
@@ -398,7 +591,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = APIBase/Info.plist;
+				INFOPLIST_FILE = APIBase/InfoiOS.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cc.adorkable.$(PRODUCT_NAME:rfc1034identifier)";
@@ -418,7 +611,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = APIBaseTests/Info.plist;
+				INFOPLIST_FILE = APIBaseTests/InfoiOS.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cc.adorkable.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -432,7 +625,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = APIBaseTests/Info.plist;
+				INFOPLIST_FILE = APIBaseTests/InfoiOS.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cc.adorkable.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -456,6 +649,22 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3C633E4A1BFE8ADA0095FEB9 /* Build configuration list for PBXNativeTarget "APIBaseOSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3C633E4B1BFE8ADA0095FEB9 /* Debug */,
+				3C633E4C1BFE8ADA0095FEB9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3C633E4D1BFE8ADA0095FEB9 /* Build configuration list for PBXNativeTarget "APIBaseOSXTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3C633E4E1BFE8ADA0095FEB9 /* Debug */,
+				3C633E4F1BFE8ADA0095FEB9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		3C686FB51B79233100E6E326 /* Build configuration list for PBXProject "APIBase" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -465,7 +674,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3C686FD11B79233100E6E326 /* Build configuration list for PBXNativeTarget "APIBase" */ = {
+		3C686FD11B79233100E6E326 /* Build configuration list for PBXNativeTarget "APIBaseiOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3C686FD21B79233100E6E326 /* Debug */,
@@ -474,7 +683,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3C686FD41B79233100E6E326 /* Build configuration list for PBXNativeTarget "APIBaseTests" */ = {
+		3C686FD41B79233100E6E326 /* Build configuration list for PBXNativeTarget "APIBaseiOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3C686FD51B79233100E6E326 /* Debug */,
