@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'AdorkableAPIBase'
-  s.version      = '0.0.3'
+  s.version      = '0.0.4'
   s.license      = 'MIT'
   s.homepage     = 'https://github.com/Adorkable/APIBaseiOS'
   s.authors      =  { 'Ian Grossberg' => 'yo.ian.g@gmail.com' }
