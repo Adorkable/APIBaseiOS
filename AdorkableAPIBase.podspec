@@ -6,7 +6,8 @@ Pod::Spec.new do |s|
   s.authors      =  { 'Ian Grossberg' => 'yo.ian.g@gmail.com' }
   s.summary      = 'A purdy simple API base'
 
-  s.platform     =  :ios, '8.0'
+  s.platform     =  :ios, '9.0'
+  s.platform     =  :osx, '10.11'
   s.source       =  { :git => 'https://github.com/Adorkable/APIBaseiOS.git', :tag => s.version.to_s }
   s.source_files = 'APIBase/*.swift'
 
