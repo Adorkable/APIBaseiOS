@@ -55,12 +55,11 @@
 		3C4A68CE1BFE95D200A8BA80 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		3C633E391BFE8ADA0095FEB9 /* APIBaseOSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = APIBaseOSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C633E421BFE8ADA0095FEB9 /* APIBaseOSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = APIBaseOSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3C633E501BFE8B830095FEB9 /* InfoOSX.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = InfoOSX.plist; sourceTree = "<group>"; };
 		3C633E531BFE8B950095FEB9 /* InfoOSX.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = InfoOSX.plist; sourceTree = "<group>"; };
 		3C633E571BFE8BD50095FEB9 /* RouteBaseiOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteBaseiOSTests.swift; sourceTree = "<group>"; };
 		3C633E581BFE8BD50095FEB9 /* RouteBaseOSXTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteBaseOSXTests.swift; sourceTree = "<group>"; };
 		3C686FBB1B79233100E6E326 /* APIBaseiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = APIBaseiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3C686FBF1B79233100E6E326 /* InfoiOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = InfoiOS.plist; sourceTree = "<group>"; };
+		3C686FBF1B79233100E6E326 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C686FC01B79233100E6E326 /* APIBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIBase.h; sourceTree = "<group>"; };
 		3C686FC61B79233100E6E326 /* APIBaseiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = APIBaseiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C686FCC1B79233100E6E326 /* InfoiOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = InfoiOS.plist; sourceTree = "<group>"; };
@@ -145,8 +144,7 @@
 				3C686FE31B7933DD00E6E326 /* LICENSE.md */,
 				3C686FDA1B7924F900E6E326 /* README.md */,
 				3C686FDD1B792EB000E6E326 /* .travis.yml */,
-				3C686FBF1B79233100E6E326 /* InfoiOS.plist */,
-				3C633E501BFE8B830095FEB9 /* InfoOSX.plist */,
+				3C686FBF1B79233100E6E326 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -423,7 +421,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = APIBase/InfoOSX.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/APIBase/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
@@ -444,7 +442,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = APIBase/InfoOSX.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/APIBase/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
@@ -581,7 +579,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = APIBase/InfoiOS.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/APIBase/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cc.adorkable.$(PRODUCT_NAME:rfc1034identifier)";
@@ -597,7 +595,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = APIBase/InfoiOS.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/APIBase/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cc.adorkable.$(PRODUCT_NAME:rfc1034identifier)";
