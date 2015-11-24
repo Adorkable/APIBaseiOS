@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		3C4A68CF1BFE95D200A8BA80 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4A68CE1BFE95D200A8BA80 /* API.swift */; };
+		3C4A68D01BFE963E00A8BA80 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4A68CE1BFE95D200A8BA80 /* API.swift */; };
 		3C633E431BFE8ADA0095FEB9 /* APIBaseOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C633E391BFE8ADA0095FEB9 /* APIBaseOSX.framework */; };
 		3C633E561BFE8BC00095FEB9 /* RouteBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C686FDB1B79250500E6E326 /* RouteBase.swift */; };
 		3C633E5A1BFE8BDF0095FEB9 /* RouteBaseiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C633E571BFE8BD50095FEB9 /* RouteBaseiOSTests.swift */; };
@@ -50,6 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3C4A68CE1BFE95D200A8BA80 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		3C633E391BFE8ADA0095FEB9 /* APIBaseOSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = APIBaseOSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C633E421BFE8ADA0095FEB9 /* APIBaseOSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = APIBaseOSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C633E501BFE8B830095FEB9 /* InfoOSX.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = InfoOSX.plist; sourceTree = "<group>"; };
@@ -127,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				3C686FC01B79233100E6E326 /* APIBase.h */,
+				3C4A68CE1BFE95D200A8BA80 /* API.swift */,
 				3C686FDB1B79250500E6E326 /* RouteBase.swift */,
 				3C686FBE1B79233100E6E326 /* Supporting Files */,
 			);
@@ -362,6 +366,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C4A68D01BFE963E00A8BA80 /* API.swift in Sources */,
 				3C633E561BFE8BC00095FEB9 /* RouteBase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -378,6 +383,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C4A68CF1BFE95D200A8BA80 /* API.swift in Sources */,
 				3C686FDC1B79250500E6E326 /* RouteBase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -656,6 +662,7 @@
 				3C633E4C1BFE8ADA0095FEB9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3C633E4D1BFE8ADA0095FEB9 /* Build configuration list for PBXNativeTarget "APIBaseOSXTests" */ = {
 			isa = XCConfigurationList;
@@ -664,6 +671,7 @@
 				3C633E4F1BFE8ADA0095FEB9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3C686FB51B79233100E6E326 /* Build configuration list for PBXProject "APIBase" */ = {
 			isa = XCConfigurationList;

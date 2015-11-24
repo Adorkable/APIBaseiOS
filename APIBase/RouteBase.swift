@@ -8,172 +8,163 @@
 
 import Foundation
 
-// TODO: Swift 2.0 this should be a protocol
-public class RouteBase: NSObject {
-    // TODO: Swift 2.0 should be internal and testable
-    public class var SubclassShouldOverrideString : String {
-        return "Subclass should override"
-    }
+internal let SubclassShouldOverrideString = "Subclass should override"
+
+internal let SubclassShouldOverrideUrl : NSURL? = NSURL(string: "subclassShouldOverride://asdf")
+
+public protocol Route {
+    static var baseUrl : NSURL? { get }
     
-    public class var SubclassShouldOverrideUrl : NSURL? {
-        return NSURL(string: "subclassShouldOverride://asdf")
-    }
+    var timeoutInterval : NSTimeInterval { get }
+    var cachePolicy : NSURLRequestCachePolicy  { get }
     
-    public class var baseUrl : NSURL? {
-        return self.SubclassShouldOverrideUrl
-    }
+    var path : String { get }
+    var query : String { get }
+    static var httpMethod : String { get }
+    var httpBody : String { get }
     
-    public static let defaultTimeout : NSTimeInterval = 10
-    let timeoutInterval : NSTimeInterval
+    func buildUrl() -> NSURL?
     
-    public static let defaultCachePolicy : NSURLRequestCachePolicy = .ReloadRevalidatingCacheData
-    public let cachePolicy : NSURLRequestCachePolicy
+    func dataTask(configureUrlRequest configureUrlRequest : ( (urlRequest : NSMutableURLRequest) -> Void)?, completionHandler : (data : NSData?, urlResponse : NSURLResponse?, error : NSError?) -> Void ) -> NSURLSessionDataTask?
+    func jsonTask(configureUrlRequest : ( (urlRequest : NSMutableURLRequest) -> Void)?, completionHandler : (jsonObject : AnyObject?, error : NSError?) -> Void) -> NSURLSessionDataTask?
+}
+
+public extension Route {
     
-    public init(timeoutInterval : NSTimeInterval, cachePolicy : NSURLRequestCachePolicy) {
-        self.timeoutInterval = timeoutInterval
-        self.cachePolicy = cachePolicy
+    func buildUrl() -> NSURL? {
         
-        super.init()
-    }
-    
-    // TODO: Swift 2.0 this should be a protocol function declaration
-    public class var path : String {
-        return self.SubclassShouldOverrideString
-    }
-    
-    // TODO: Swift 2.0 this should be a protocol function declaration
-    public var query : String {
-        return RouteBase.SubclassShouldOverrideString
-    }
-    
-    // TODO: Swift 2.0 this should be a protocol function declaration
-    public class var httpMethod : String {
-        return self.SubclassShouldOverrideString
-    }
-    
-    // TODO: Swift 2.0 this should be a protocol function declaration
-    public var httpBody : String {
-        return RouteBase.SubclassShouldOverrideString
-    }
-    
-    // TODO: Swift 2.0 this should be a default implementation function
-    internal class func encodeString(string : String) -> String? {
-        return string.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
-    }
-    
-    // TODO: Swift 2.0 this should be a default implementation function
-    internal func buildUrl() -> NSURL? {
-        
-        var result : NSURL?
-        
-        if self.dynamicType.baseUrl != RouteBase.SubclassShouldOverrideUrl
-        {
-            if self.dynamicType.path != RouteBase.SubclassShouldOverrideString
-            {
-                var combinedPath = self.dynamicType.path
-                
-                var query = String()
-                if self.query != RouteBase.SubclassShouldOverrideString
-                {
-                    query += self.query
-                }
-                
-                if query.characters.count > 0
-                {
-                    combinedPath += "?" + query
-                }
-                
-                result = NSURL(string: combinedPath, relativeToURL: self.dynamicType.baseUrl)
-            }
-        } // TODO: proper way to tell clients of this library the reason for this failure
-        
-        return result
-    }
-    
-    public class func addParameter(inout addTo : String, name : String, value : String) {
-        if name.characters.count > 0 &&
-            value.characters.count > 0,
-            let encodedValue = self.encodeString(value)
-        {
-            let add = name + "=" + encodedValue
-            
-            if addTo.characters.count > 0 {
-                addTo += "&" + add
-            } else {
-                addTo = add
-            }
-            
+        // TODO: proper way to tell clients of this library the reason for this failure
+        guard self.path != SubclassShouldOverrideString else {
+            return nil
         }
+        
+        var combinedPath = self.path
+        
+        var query = String()
+        if self.query != SubclassShouldOverrideString
+        {
+            query += self.query
+        }
+        
+        if query.characters.count > 0
+        {
+            combinedPath += "?" + query
+        }
+        
+        return NSURL(string: combinedPath, relativeToURL: self.dynamicType.baseUrl)
     }
     
-    // TODO: Swift 2.0 this should be a default implementation function
     public func dataTask(configureUrlRequest configureUrlRequest : ( (urlRequest : NSMutableURLRequest) -> Void)? = nil, completionHandler : (data : NSData?, urlResponse : NSURLResponse?, error : NSError?) -> Void ) -> NSURLSessionDataTask? {
-        var result : NSURLSessionDataTask?
         
-        if let url = self.buildUrl()
-        {
-            let urlRequest = NSMutableURLRequest(URL: url, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
-            urlRequest.setValue("text/plain", forHTTPHeaderField: "Content-Type")
-            
-            if self.dynamicType.httpMethod != RouteBase.SubclassShouldOverrideString
-            {
-                urlRequest.HTTPMethod = self.dynamicType.httpMethod
-            }
-            
-            if self.httpBody != RouteBase.SubclassShouldOverrideString
-            {
-                if let bodyData = self.httpBody.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
-                {
-                    urlRequest.HTTPBody = bodyData
-                    urlRequest.setValue("\(bodyData.length)", forHTTPHeaderField: "Content-Length")
-                }
-            }
-            
-            if configureUrlRequest != nil
-            {
-                configureUrlRequest!(urlRequest: urlRequest)
-            }
-            
-            let urlSession = NSURLSession.sharedSession()
-            result = urlSession.dataTaskWithRequest(urlRequest, completionHandler: completionHandler)
+        guard let url = self.buildUrl() else {
+            // TODO: notify client?
+            return nil
         }
         
-        return result
+        guard self.dynamicType.httpMethod != SubclassShouldOverrideString else {
+            // TODO: notify client
+            return nil
+        }
+        
+        let urlRequest = NSMutableURLRequest(URL: url, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
+        urlRequest.setValue("text/plain", forHTTPHeaderField: "Content-Type")
+        
+        urlRequest.HTTPMethod = self.dynamicType.httpMethod
+    
+        if self.httpBody != SubclassShouldOverrideString
+        {
+            if let bodyData = self.httpBody.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+            {
+                urlRequest.HTTPBody = bodyData
+                urlRequest.setValue("\(bodyData.length)", forHTTPHeaderField: "Content-Length")
+            }
+        }
+        
+        if configureUrlRequest != nil
+        {
+            configureUrlRequest!(urlRequest: urlRequest)
+        }
+        
+        let urlSession = NSURLSession.sharedSession()
+        return urlSession.dataTaskWithRequest(urlRequest, completionHandler: completionHandler)
     }
     
     public func jsonTask(configureUrlRequest : ( (urlRequest : NSMutableURLRequest) -> Void)? = nil, completionHandler : (jsonObject : AnyObject?, error : NSError?) -> Void) -> NSURLSessionDataTask? {
         
         return self.dataTask(configureUrlRequest: { (urlRequest : NSMutableURLRequest) -> Void in
             
-                if let configureUrlRequest = configureUrlRequest
-                {
-                    configureUrlRequest(urlRequest: urlRequest)
-                }
-                urlRequest.setValue("application/json", forHTTPHeaderField: "Accept") // TODO: should this go before or after the calls closer to the client?
- 
-            }, completionHandler: { (data, urlResponse, error) -> Void in
-            if data != nil
+            if let configureUrlRequest = configureUrlRequest
             {
-                do
+                configureUrlRequest(urlRequest: urlRequest)
+            }
+            urlRequest.setValue("application/json", forHTTPHeaderField: "Accept") // TODO: should this go before or after the calls closer to the client?
+            
+            }, completionHandler: { (data, urlResponse, error) -> Void in
+                if data != nil
                 {
-                    if let jsonObject: AnyObject = try NSJSONSerialization.JSONObjectWithData(data!, options: [])
+                    do
                     {
-                        completionHandler(jsonObject: jsonObject, error: nil)
-                    } else if let errorString = NSString(data: data!, encoding: NSUTF8StringEncoding) as? String
+                        if let jsonObject: AnyObject = try NSJSONSerialization.JSONObjectWithData(data!, options: [])
+                        {
+                            completionHandler(jsonObject: jsonObject, error: nil)
+                        } else if let errorString = NSString(data: data!, encoding: NSUTF8StringEncoding) as? String
+                        {
+                            completionHandler(jsonObject: nil, error: NSError(domain: errorString, code: 0, userInfo: nil) )
+                        } else
+                        {
+                            completionHandler(jsonObject: nil, error: NSError(domain: "Unknown error from request", code: 0, userInfo: nil) )
+                        }
+                    } catch let error as NSError
                     {
-                        completionHandler(jsonObject: nil, error: NSError(domain: errorString, code: 0, userInfo: nil) )
-                    } else
-                    {
-                        completionHandler(jsonObject: nil, error: NSError(domain: "Unknown error from request", code: 0, userInfo: nil) )
+                        completionHandler(jsonObject: nil, error: error)
                     }
-                } catch let error as NSError
+                } else
                 {
                     completionHandler(jsonObject: nil, error: error)
                 }
-            } else
-            {
-                completionHandler(jsonObject: nil, error: error)
-            }
         })
+    }
+}
+
+// TODO: currently Generic Protocols are not supported
+public class RouteBase<T : API>: NSObject, Route {
+    
+    public static var baseUrl : NSURL? {
+        return T.baseUrl
+    }
+    
+    public let timeoutInterval : NSTimeInterval
+    public let cachePolicy : NSURLRequestCachePolicy
+    
+    public init(timeoutInterval : NSTimeInterval = T.timeoutInterval, cachePolicy : NSURLRequestCachePolicy = T.cachePolicy) {
+        self.timeoutInterval = timeoutInterval
+        self.cachePolicy = cachePolicy
+        
+        super.init()
+    }
+    
+    // TODO: Figure out better abstact function mechanism
+    public var path : String {
+        return SubclassShouldOverrideString
+    }
+    
+    // TODO: Figure out better abstact function mechanism
+    public var query : String {
+        return SubclassShouldOverrideString
+    }
+    
+    // TODO: Figure out better abstact function mechanism
+    public class var httpMethod : String {
+        return SubclassShouldOverrideString
+    }
+    
+    // TODO: Figure out better abstact function mechanism
+    public var httpBody : String {
+        return SubclassShouldOverrideString
+    }
+    
+    public class func addParameter(inout addTo : String, name : String, value : String) {
+        
+        T.addParameter(&addTo, name: name, value: value)
     }
 }
