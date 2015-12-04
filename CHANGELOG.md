@@ -1,8 +1,7 @@
 # Change Log
 
-## [Unreleased](https://github.com/Adorkable/APIBaseiOS/tree/HEAD)
-
-[Full Changelog](https://github.com/Adorkable/APIBaseiOS/compare/0.1.0...HEAD)
+## [0.2.0](https://github.com/Adorkable/APIBaseiOS/tree/0.2.0) (2015-12-04)
+[Full Changelog](https://github.com/Adorkable/APIBaseiOS/compare/0.1.0...0.2.0)
 
 **Implemented enhancements:**
 
