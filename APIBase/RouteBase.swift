@@ -12,6 +12,15 @@ internal let SubclassShouldOverrideString = "Subclass should override"
 
 internal let SubclassShouldOverrideUrl : NSURL? = NSURL(string: "subclassShouldOverride://asdf")
 
+public enum SuccessResult<T> {
+    case Success(T)
+    case Failure(NSError)
+}
+
+public typealias ConfigureUrlRequestHandler = (urlRequest : NSMutableURLRequest) -> Void
+public typealias DataTaskCompletionHandler = (result : SuccessResult<NSData>, urlResponse : NSURLResponse?) -> Void
+public typealias JsonTaskCompletionHandler = (result : SuccessResult<AnyObject>) -> Void
+
 public protocol Route {
     static var baseUrl : NSURL? { get }
     
@@ -25,8 +34,8 @@ public protocol Route {
     
     func buildUrl() -> NSURL?
     
-    func dataTask(configureUrlRequest configureUrlRequest : ( (urlRequest : NSMutableURLRequest) -> Void)?, completionHandler : (data : NSData?, urlResponse : NSURLResponse?, error : NSError?) -> Void ) -> NSURLSessionDataTask?
-    func jsonTask(configureUrlRequest : ( (urlRequest : NSMutableURLRequest) -> Void)?, completionHandler : (jsonObject : AnyObject?, error : NSError?) -> Void) -> NSURLSessionDataTask?
+    func dataTask(configureUrlRequest configureUrlRequest : ConfigureUrlRequestHandler?, completionHandler : DataTaskCompletionHandler) -> NSURLSessionDataTask?
+    func jsonTask(configureUrlRequest : ConfigureUrlRequestHandler?, completionHandler : JsonTaskCompletionHandler) -> NSURLSessionDataTask?
 }
 
 public extension Route {
@@ -54,7 +63,7 @@ public extension Route {
         return NSURL(string: combinedPath, relativeToURL: self.dynamicType.baseUrl)
     }
     
-    public func dataTask(configureUrlRequest configureUrlRequest : ( (urlRequest : NSMutableURLRequest) -> Void)? = nil, completionHandler : (data : NSData?, urlResponse : NSURLResponse?, error : NSError?) -> Void ) -> NSURLSessionDataTask? {
+    public func dataTask(configureUrlRequest configureUrlRequest : ConfigureUrlRequestHandler? = nil, completionHandler : DataTaskCompletionHandler) -> NSURLSessionDataTask? {
         
         guard let url = self.buildUrl() else {
             // TODO: notify client?
@@ -80,16 +89,32 @@ public extension Route {
             }
         }
         
-        if configureUrlRequest != nil
-        {
-            configureUrlRequest!(urlRequest: urlRequest)
+        if let configureUrlRequest = configureUrlRequest {
+            configureUrlRequest(urlRequest: urlRequest)
         }
         
         let urlSession = NSURLSession.sharedSession()
-        return urlSession.dataTaskWithRequest(urlRequest, completionHandler: completionHandler)
+        
+        return urlSession.dataTaskWithRequest(urlRequest, completionHandler: { (data, urlResponse, error) -> Void in
+            
+            guard let data = data else {
+                
+                if let error = error {
+                    
+                    completionHandler(result: .Failure(error), urlResponse: urlResponse)
+                } else {
+                    
+                    completionHandler(result: .Failure(NSError(domain: "Response is empty", code: 0, userInfo: nil) ), urlResponse: urlResponse)
+                }
+                
+                return
+            }
+            
+            completionHandler(result: .Success(data), urlResponse: urlResponse)
+        })
     }
     
-    public func jsonTask(configureUrlRequest : ( (urlRequest : NSMutableURLRequest) -> Void)? = nil, completionHandler : (jsonObject : AnyObject?, error : NSError?) -> Void) -> NSURLSessionDataTask? {
+    public func jsonTask(configureUrlRequest : ConfigureUrlRequestHandler? = nil, completionHandler : JsonTaskCompletionHandler) -> NSURLSessionDataTask? {
         
         return self.dataTask(configureUrlRequest: { (urlRequest : NSMutableURLRequest) -> Void in
             
@@ -99,28 +124,26 @@ public extension Route {
             }
             urlRequest.setValue("application/json", forHTTPHeaderField: "Accept") // TODO: should this go before or after the calls closer to the client?
             
-            }, completionHandler: { (data, urlResponse, error) -> Void in
-                if data != nil
-                {
+            }, completionHandler: { (result, urlResponse) -> Void in
+                
+                switch result {
+                case .Success(let data):
+                    
                     do
                     {
-                        if let jsonObject: AnyObject = try NSJSONSerialization.JSONObjectWithData(data!, options: [])
-                        {
-                            completionHandler(jsonObject: jsonObject, error: nil)
-                        } else if let errorString = NSString(data: data!, encoding: NSUTF8StringEncoding) as? String
-                        {
-                            completionHandler(jsonObject: nil, error: NSError(domain: errorString, code: 0, userInfo: nil) )
-                        } else
-                        {
-                            completionHandler(jsonObject: nil, error: NSError(domain: "Unknown error from request", code: 0, userInfo: nil) )
-                        }
+                        let jsonObject = try NSJSONSerialization.JSONObjectWithData(data, options: [])
+                        completionHandler(result: .Success(jsonObject))
+                        
                     } catch let error as NSError
                     {
-                        completionHandler(jsonObject: nil, error: error)
+                        completionHandler(result: .Failure(error))
                     }
-                } else
-                {
-                    completionHandler(jsonObject: nil, error: error)
+                    
+                    break
+                    
+                case .Failure(let error):
+                    completionHandler(result: .Failure(error))
+                    break
                 }
         })
     }
