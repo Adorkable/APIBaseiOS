@@ -9,7 +9,7 @@ install:
 
 script:
 - xcodebuild test -project APIBase.xcodeproj -scheme 'APIBaseiOS' -destination 'platform=iOS Simulator,name=iPhone Retina (4-inch)' | xcpretty -c
-- xcodebuild test -project APIBase.xcodeproj -scheme 'APIBaseOSX' -destination 'platform=iOS Simulator,name=iPhone Retina (4-inch)' | xcpretty -c
+- xcodebuild test -project APIBase.xcodeproj -scheme 'APIBaseOSX' -destination 'platform=OS X,arch=x86_64' | xcpretty -c
 - xcodebuild -project APIBase.xcodeproj -scheme 'Podspec Lint' -destination 'platform=iOS Simulator,name=iPhone Retina (4-inch)' | xcpretty -c
 
 env:
