@@ -23,10 +23,10 @@
 /* Begin PBXBuildFile section */
 		3C4A68CF1BFE95D200A8BA80 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4A68CE1BFE95D200A8BA80 /* API.swift */; };
 		3C4A68D01BFE963E00A8BA80 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4A68CE1BFE95D200A8BA80 /* API.swift */; };
+		3C5EC7081C12028A003D3801 /* RouteBaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C633E571BFE8BD50095FEB9 /* RouteBaseTests.swift */; };
 		3C633E431BFE8ADA0095FEB9 /* APIBaseOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C633E391BFE8ADA0095FEB9 /* APIBaseOSX.framework */; };
 		3C633E561BFE8BC00095FEB9 /* RouteBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C686FDB1B79250500E6E326 /* RouteBase.swift */; };
-		3C633E5A1BFE8BDF0095FEB9 /* RouteBaseiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C633E571BFE8BD50095FEB9 /* RouteBaseiOSTests.swift */; };
-		3C633E5B1BFE8BE40095FEB9 /* RouteBaseOSXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C633E581BFE8BD50095FEB9 /* RouteBaseOSXTests.swift */; };
+		3C633E5A1BFE8BDF0095FEB9 /* RouteBaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C633E571BFE8BD50095FEB9 /* RouteBaseTests.swift */; };
 		3C686FC11B79233100E6E326 /* APIBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C686FC01B79233100E6E326 /* APIBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3C686FC71B79233100E6E326 /* APIBaseiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C686FBB1B79233100E6E326 /* APIBaseiOS.framework */; };
 		3C686FDC1B79250500E6E326 /* RouteBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C686FDB1B79250500E6E326 /* RouteBase.swift */; };
@@ -56,8 +56,7 @@
 		3C633E391BFE8ADA0095FEB9 /* APIBaseOSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = APIBaseOSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C633E421BFE8ADA0095FEB9 /* APIBaseOSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = APIBaseOSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C633E531BFE8B950095FEB9 /* InfoOSX.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = InfoOSX.plist; sourceTree = "<group>"; };
-		3C633E571BFE8BD50095FEB9 /* RouteBaseiOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteBaseiOSTests.swift; sourceTree = "<group>"; };
-		3C633E581BFE8BD50095FEB9 /* RouteBaseOSXTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteBaseOSXTests.swift; sourceTree = "<group>"; };
+		3C633E571BFE8BD50095FEB9 /* RouteBaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteBaseTests.swift; sourceTree = "<group>"; };
 		3C686FBB1B79233100E6E326 /* APIBaseiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = APIBaseiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C686FBF1B79233100E6E326 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C686FC01B79233100E6E326 /* APIBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIBase.h; sourceTree = "<group>"; };
@@ -152,8 +151,7 @@
 		3C686FCA1B79233100E6E326 /* APIBaseTests */ = {
 			isa = PBXGroup;
 			children = (
-				3C633E571BFE8BD50095FEB9 /* RouteBaseiOSTests.swift */,
-				3C633E581BFE8BD50095FEB9 /* RouteBaseOSXTests.swift */,
+				3C633E571BFE8BD50095FEB9 /* RouteBaseTests.swift */,
 				3C686FCB1B79233100E6E326 /* Supporting Files */,
 			);
 			path = APIBaseTests;
@@ -373,7 +371,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C633E5B1BFE8BE40095FEB9 /* RouteBaseOSXTests.swift in Sources */,
+				3C5EC7081C12028A003D3801 /* RouteBaseTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,7 +388,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C633E5A1BFE8BDF0095FEB9 /* RouteBaseiOSTests.swift in Sources */,
+				3C633E5A1BFE8BDF0095FEB9 /* RouteBaseTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

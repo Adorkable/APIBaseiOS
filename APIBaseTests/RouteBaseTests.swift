@@ -8,14 +8,18 @@
 
 import XCTest
 
-@testable import APIBaseOSX
+#if os(iOS)
+    @testable import APIBaseiOS
+#elseif os(OSX)
+    @testable import APIBaseOSX
+#endif
 
 struct TestAPI : API {
     static var domain : String {
-        get
-        {
-            return "www.asdf.com"
-        }
+        return "www.asdf.com"
+    }
+    static var port : String {
+        return "80"
     }
 }
 
@@ -26,11 +30,7 @@ class RouteBaseTests: XCTestCase {
         XCTAssertNotNil(RouteBase<TestAPI>.baseUrl, "Base Url should not be nil")
         XCTAssertNotEqual(SubclassShouldOverrideUrl!, RouteBase<TestAPI>.baseUrl!, "Base Url should not equal Subclass Should Override Url")
     }
-    
-    func testPath() {
-        XCTAssertEqual(SubclassShouldOverrideString, RouteBase<TestAPI>.path, "Path should equal Subclass Should Override String")
-    }
-    
+
     func testQuery() {
         let base = RouteBase<TestAPI>()
         
