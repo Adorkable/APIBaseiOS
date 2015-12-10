@@ -136,7 +136,15 @@ public extension Route {
                         
                     } catch let error as NSError
                     {
-                        completionHandler(result: .Failure(error))
+                        if error.code == 3840, // Invalid JSON format, may be straight text
+                            let decodedErrorString = NSString(data: data, encoding: NSUTF8StringEncoding) {
+                            
+                                let decodedError = NSError(domain: decodedErrorString as String, code: 0, userInfo: nil)
+                                completionHandler(result: .Failure(decodedError))
+                            
+                        } else {
+                            completionHandler(result: .Failure(error))
+                        }
                     }
                     
                     break
