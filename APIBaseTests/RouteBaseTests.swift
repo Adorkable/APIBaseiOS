@@ -27,8 +27,10 @@ struct TestAPI : API {
 class RouteBaseTests: XCTestCase {
     
     func testBaseUrl() {
-        XCTAssertNotNil(RouteBase<TestAPI>.baseUrl, "Base Url should not be nil")
-        XCTAssertNotEqual(SubclassShouldOverrideUrl!, RouteBase<TestAPI>.baseUrl!, "Base Url should not equal Subclass Should Override Url")
+        let base = RouteBase<TestAPI>()
+        
+        XCTAssertNotNil(base.baseUrl, "Base Url should not be nil")
+        XCTAssertNotEqual(SubclassShouldOverrideUrl!, base.baseUrl!, "Base Url should not equal Subclass Should Override Url")
     }
 
     func testQuery() {

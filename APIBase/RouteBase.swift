@@ -22,7 +22,8 @@ public typealias DataTaskCompletionHandler = (result : SuccessResult<NSData>, ur
 public typealias JsonTaskCompletionHandler = (result : SuccessResult<AnyObject>) -> Void
 
 public protocol Route {
-    static var baseUrl : NSURL? { get }
+    // TODO: once Swift supports protocol class vars as this should be overridable (when inheriting from RouteBase for example)
+    var baseUrl : NSURL? { get }
     
     var timeoutInterval : NSTimeInterval { get }
     var cachePolicy : NSURLRequestCachePolicy  { get }
@@ -60,7 +61,7 @@ public extension Route {
             combinedPath += "?" + query
         }
         
-        return NSURL(string: combinedPath, relativeToURL: self.dynamicType.baseUrl)
+        return NSURL(string: combinedPath, relativeToURL: self.baseUrl)
     }
     
     public func dataTask(configureUrlRequest configureUrlRequest : ConfigureUrlRequestHandler? = nil, completionHandler : DataTaskCompletionHandler) -> NSURLSessionDataTask? {
@@ -160,7 +161,7 @@ public extension Route {
 // TODO: currently Generic Protocols are not supported
 public class RouteBase<T : API>: NSObject, Route {
     
-    public static var baseUrl : NSURL? {
+    public var baseUrl : NSURL? {
         return T.baseUrl
     }
     
