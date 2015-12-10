@@ -1,9 +1,8 @@
 language: objective-c
-osx_image: xcode7
-before_install:
 - gem install cocoapods
 script:
-- xcodebuild -project APIBase.xcodeproj -scheme 'APIBase' -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone Retina (4-inch)' build test GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES
+- xcodebuild -project APIBase.xcodeproj -scheme 'APIBaseiOS' -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone Retina (4-inch)' build test GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES
+- xcodebuild -project APIBase.xcodeproj -scheme 'APIBaseOSX' -sdk macosx -destination 'platform=OS X,arch=x86_64' build test GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES
 - xcodebuild -project APIBase.xcodeproj -scheme 'Podspec Lint'
 after_success:
 - bash <(curl -s https://codecov.io/bash)
