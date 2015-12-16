@@ -100,14 +100,12 @@ public extension Route {
             
             guard let data = data else {
                 
-                if let error = error {
-                    
-                    completionHandler(result: .Failure(error), urlResponse: urlResponse)
-                } else {
-                    
-                    completionHandler(result: .Failure(NSError(domain: "Response is empty", code: 0, userInfo: nil) ), urlResponse: urlResponse)
+                guard let error = error else {
+                    completionHandler(result: .Failure(NSError(description: "Response is empty") ), urlResponse: urlResponse)
+                    return
                 }
                 
+                completionHandler(result: .Failure(error), urlResponse: urlResponse)
                 return
             }
             
@@ -140,7 +138,7 @@ public extension Route {
                         if error.code == 3840, // Invalid JSON format, may be straight text
                             let decodedErrorString = NSString(data: data, encoding: NSUTF8StringEncoding) {
                             
-                                let decodedError = NSError(domain: decodedErrorString as String, code: 0, userInfo: nil)
+                                let decodedError = NSError(description: decodedErrorString as String)
                                 completionHandler(result: .Failure(decodedError))
                             
                         } else {

@@ -31,6 +31,7 @@
 		3C686FC71B79233100E6E326 /* APIBaseiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C686FBB1B79233100E6E326 /* APIBaseiOS.framework */; };
 		3C686FDC1B79250500E6E326 /* RouteBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C686FDB1B79250500E6E326 /* RouteBase.swift */; };
 		3C686FE41B7933DD00E6E326 /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = 3C686FE31B7933DD00E6E326 /* LICENSE.md */; };
+		3CB210921C21E60900026BE0 /* NSError+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB210911C21E60900026BE0 /* NSError+Utility.swift */; };
 		3CD330C71BFE88F500167264 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3C686FDA1B7924F900E6E326 /* README.md */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,7 @@
 		3C686FDB1B79250500E6E326 /* RouteBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteBase.swift; sourceTree = "<group>"; };
 		3C686FDD1B792EB000E6E326 /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = SOURCE_ROOT; };
 		3C686FE31B7933DD00E6E326 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = SOURCE_ROOT; };
+		3CB210911C21E60900026BE0 /* NSError+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSError+Utility.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				3C686FBD1B79233100E6E326 /* APIBase */,
+				3C686FBE1B79233100E6E326 /* Supporting Files */,
 				3C686FCA1B79233100E6E326 /* APIBaseTests */,
 				3C686FBC1B79233100E6E326 /* Products */,
 			);
@@ -130,7 +133,7 @@
 				3C686FC01B79233100E6E326 /* APIBase.h */,
 				3C4A68CE1BFE95D200A8BA80 /* API.swift */,
 				3C686FDB1B79250500E6E326 /* RouteBase.swift */,
-				3C686FBE1B79233100E6E326 /* Supporting Files */,
+				3CB210911C21E60900026BE0 /* NSError+Utility.swift */,
 			);
 			path = APIBase;
 			sourceTree = "<group>";
@@ -146,6 +149,7 @@
 				3C686FBF1B79233100E6E326 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			path = APIBase;
 			sourceTree = "<group>";
 		};
 		3C686FCA1B79233100E6E326 /* APIBaseTests */ = {
@@ -379,6 +383,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CB210921C21E60900026BE0 /* NSError+Utility.swift in Sources */,
 				3C4A68CF1BFE95D200A8BA80 /* API.swift in Sources */,
 				3C686FDC1B79250500E6E326 /* RouteBase.swift in Sources */,
 			);
