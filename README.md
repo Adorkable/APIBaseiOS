@@ -2,9 +2,9 @@ APIBase
 ===
 [![Build Status](http://img.shields.io/travis/Adorkable/APIBaseiOS.svg?branch=master&style=flat)](https://travis-ci.org/Adorkable/APIBaseiOS)
 [![codecov.io](https://img.shields.io/codecov/c/github/Adorkable/APIBaseiOS.svg)](https://codecov.io/github/Adorkable/APIBaseiOS?branch=master)
-[![Pod Version](http://img.shields.io/cocoapods/v/AdorkableAPIBase.svg?style=flat)](http://cocoadocs.org/docsets/AdorkableAPIBase/)
 [![Pod Platform](http://img.shields.io/cocoapods/p/AdorkableAPIBase.svg?style=flat)](http://cocoadocs.org/docsets/AdorkableAPIBase/)
 [![Pod License](http://img.shields.io/cocoapods/l/AdorkableAPIBase.svg?style=flat)](http://cocoadocs.org/docsets/AdorkableAPIBase/)
+[![Pod Version](http://img.shields.io/cocoapods/v/AdorkableAPIBase.svg?style=flat)](http://cocoadocs.org/docsets/AdorkableAPIBase/)
 
 **APIBase** a purdy simple base for an framework to access an API. Now with **iOS, OSX, watchos,** and **tvos** support!
 
