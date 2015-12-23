@@ -70,6 +70,7 @@
 		3C686FDD1B792EB000E6E326 /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = SOURCE_ROOT; };
 		3C686FE31B7933DD00E6E326 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = SOURCE_ROOT; };
 		3CB210911C21E60900026BE0 /* NSError+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSError+Utility.swift"; sourceTree = "<group>"; };
+		3CB2C78D1C2B387800BBC529 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +148,7 @@
 				3C686FDA1B7924F900E6E326 /* README.md */,
 				3C686FDD1B792EB000E6E326 /* .travis.yml */,
 				3C686FBF1B79233100E6E326 /* Info.plist */,
+				3CB2C78D1C2B387800BBC529 /* Package.swift */,
 			);
 			name = "Supporting Files";
 			path = APIBase;

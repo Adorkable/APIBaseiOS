@@ -33,3 +33,6 @@ Carthage/Build
 # Documentation
 #
 docs
+
+# Swift Package Manager
+.build
