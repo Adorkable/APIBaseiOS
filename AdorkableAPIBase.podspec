@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.tvos.deployment_target = '9.0'
 
   s.source       =  { :git => 'https://github.com/Adorkable/APIBaseiOS.git', :tag => s.version.to_s }
-  s.source_files = 'APIBase/*.swift'
+  s.source_files = 'Sources/*.swift'
 
   s.requires_arc = true
 end
