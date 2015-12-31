@@ -33,6 +33,8 @@
 		3C686FE41B7933DD00E6E326 /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = 3C686FE31B7933DD00E6E326 /* LICENSE.md */; };
 		3CB210921C21E60900026BE0 /* NSError+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB210911C21E60900026BE0 /* NSError+Utility.swift */; };
 		3CD330C71BFE88F500167264 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3C686FDA1B7924F900E6E326 /* README.md */; };
+		3CE9693A1C359370007C43C6 /* NSError+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB210911C21E60900026BE0 /* NSError+Utility.swift */; };
+		3CE9693B1C359379007C43C6 /* APIBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C686FC01B79233100E6E326 /* APIBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -179,6 +181,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CE9693B1C359379007C43C6 /* APIBase.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,6 +371,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CE9693A1C359370007C43C6 /* NSError+Utility.swift in Sources */,
 				3C4A68D01BFE963E00A8BA80 /* API.swift in Sources */,
 				3C633E561BFE8BC00095FEB9 /* RouteBase.swift in Sources */,
 			);
