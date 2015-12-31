@@ -14,6 +14,6 @@ let package = Package(
         Target(name: "AdorkableAPIBase")
     ],
     exclude: [
-        "APIBaseTests"
+        "Tests"
     ]
 )
