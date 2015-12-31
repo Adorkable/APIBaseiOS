@@ -13,14 +13,3 @@ env:
   - TIMEOUT=1000
   matrix:
   - USE_NETWORK=true
-notifications:
-  email: false
-  hipchat:
-    on_success: change
-    on_failure: always
-    rooms:
-      secure: OgCZf9hcMvkvU4zujGQCzA/kSJnlkQ/KuR3u6AafGXgZH6bZNw+evXpA/yLsRy10II40Llp2xmlO3XtdAzeYqKn4qncbgnLEkU2iJN/+I7SZd8CnXQD30r+i3ybRYo7M/N2XMnsVK+98fvigK5hC8P74WkIkRyvKRBc8+1sTp0sLSzYuXA5VsztS0fXMvVmVpxE5slAU/28H/U6U5Q4GGkUXPbyCal1J7cWs04ZF+sOPMXGQ/WFa+jbnjZiYS1xfHKh6AsWODrjyTj1Mleji4dKPF8pLyGkdBle99zroH5HznQtk4wTyjR+UgFHumUIIw/1S4+SIZOpXs3DAAXJHFMOlY1OKdFQNHVJn2nZXGqgQoRA1d59R8vvfoXPMBcB0mBR4jafHl7lM9BspiFJkfxoaYt5Llxxc9yYHOB9o6/uSExgL83D9lC6AGOjwkECO75cT/cM0t7g0sNL6wxOrdZsbh/2/O0fXpWk5U+3i0H2ZJH1IbVhSKENYvkyxJwyQoJJDQ9+4KvlldghoC9Qw6QZIStoqW1AO/xpjKvEE2wKQYG70dzydQYiJ09fDuS0UPGjztPfoVZtRlTmulrVlerShSY/H8sZpeFL0L+JGmRTg+xZNT7yfnLCrnHyfYKijWWSeA/MJV2LPUDCRcY68r4abd3QMx9oim/uhLsTSmh4=
-    template:
-    - "%{repository}#%{build_number} (%{branch} - %{commit} : %{author}): %{message}
-      -- Changes: %{compare_url} -- Build details: %{build_url} --"
-    notify: true
