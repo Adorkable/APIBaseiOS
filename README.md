@@ -4,6 +4,7 @@ APIBase
 [![codecov.io](https://img.shields.io/codecov/c/github/Adorkable/APIBaseiOS.svg)](https://codecov.io/github/Adorkable/APIBaseiOS?branch=master)
 [![Pod Platform](http://img.shields.io/cocoapods/p/AdorkableAPIBase.svg?style=flat)](http://cocoadocs.org/docsets/AdorkableAPIBase/)
 [![Pod License](http://img.shields.io/cocoapods/l/AdorkableAPIBase.svg?style=flat)](http://cocoadocs.org/docsets/AdorkableAPIBase/)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Pod Version](http://img.shields.io/cocoapods/v/AdorkableAPIBase.svg?style=flat)](http://cocoadocs.org/docsets/AdorkableAPIBase/)
 
 **APIBase** a purdy simple base for an framework to access an API. Now with **iOS, OSX, watchos,** and **tvos** support!
