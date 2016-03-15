@@ -1,5 +1,11 @@
 # Change Log
 
+## [0.3.4](https://github.com/Adorkable/APIBaseiOS/tree/0.3.4) (2016-01-03)
+[Full Changelog](https://github.com/Adorkable/APIBaseiOS/compare/0.3.3...0.3.4)
+
+## [0.3.3](https://github.com/Adorkable/APIBaseiOS/tree/0.3.3) (2016-01-03)
+[Full Changelog](https://github.com/Adorkable/APIBaseiOS/compare/0.3.2...0.3.3)
+
 ## [0.3.2](https://github.com/Adorkable/APIBaseiOS/tree/0.3.2) (2015-12-23)
 [Full Changelog](https://github.com/Adorkable/APIBaseiOS/compare/0.3.1...0.3.2)
 
