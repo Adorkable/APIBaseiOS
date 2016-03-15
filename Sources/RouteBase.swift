@@ -64,6 +64,41 @@ public extension Route {
         return NSURL(string: combinedPath, relativeToURL: self.baseUrl)
     }
     
+    internal func createURLRequest(url : NSURL) -> NSMutableURLRequest {
+        
+        let result = NSMutableURLRequest(URL: url, cachePolicy: self.cachePolicy, timeoutInterval: self.timeoutInterval)
+        result.setValue("text/plain", forHTTPHeaderField: "Content-Type")
+        
+        result.HTTPMethod = self.dynamicType.httpMethod
+        
+        if self.httpBody != SubclassShouldOverrideString
+        {
+            if let bodyData = self.httpBody.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+            {
+                result.HTTPBody = bodyData
+                result.setValue("\(bodyData.length)", forHTTPHeaderField: "Content-Length")
+            }
+        }
+        
+        return result
+    }
+    
+    internal func handleDataTaskCompletion(data : NSData?, urlResponse : NSURLResponse?, error: NSError?, completionHandler : DataTaskCompletionHandler) {
+        
+        guard let data = data else {
+            
+            guard let error = error else {
+                completionHandler(result: .Failure(NSError(description: "Response is empty") ), urlResponse: urlResponse)
+                return
+            }
+            
+            completionHandler(result: .Failure(error), urlResponse: urlResponse)
+            return
+        }
+        
+        completionHandler(result: .Success(data), urlResponse: urlResponse)
+    }
+    
     public func dataTask(configureUrlRequest configureUrlRequest : ConfigureUrlRequestHandler? = nil, completionHandler : DataTaskCompletionHandler) -> NSURLSessionDataTask? {
         
         guard let url = self.buildUrl() else {
@@ -76,19 +111,7 @@ public extension Route {
             return nil
         }
         
-        let urlRequest = NSMutableURLRequest(URL: url, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
-        urlRequest.setValue("text/plain", forHTTPHeaderField: "Content-Type")
-        
-        urlRequest.HTTPMethod = self.dynamicType.httpMethod
-    
-        if self.httpBody != SubclassShouldOverrideString
-        {
-            if let bodyData = self.httpBody.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
-            {
-                urlRequest.HTTPBody = bodyData
-                urlRequest.setValue("\(bodyData.length)", forHTTPHeaderField: "Content-Length")
-            }
-        }
+        let urlRequest = self.createURLRequest(url)
         
         if let configureUrlRequest = configureUrlRequest {
             configureUrlRequest(urlRequest: urlRequest)
@@ -98,19 +121,38 @@ public extension Route {
         
         return urlSession.dataTaskWithRequest(urlRequest, completionHandler: { (data, urlResponse, error) -> Void in
             
-            guard let data = data else {
+            self.handleDataTaskCompletion(data, urlResponse: urlResponse, error: error, completionHandler: completionHandler)
+        })
+    }
+    
+    internal func handleJsonTaskCompletion(data : SuccessResult<NSData>, completionHandler : JsonTaskCompletionHandler) {
+        switch data {
+        case .Success(let data):
+            
+            do
+            {
+                let jsonObject = try NSJSONSerialization.JSONObjectWithData(data, options: [])
+                completionHandler(result: .Success(jsonObject))
                 
-                guard let error = error else {
-                    completionHandler(result: .Failure(NSError(description: "Response is empty") ), urlResponse: urlResponse)
-                    return
+            } catch let error as NSError
+            {
+                if error.code == 3840, // Invalid JSON format, may be straight text
+                    let decodedErrorString = NSString(data: data, encoding: NSUTF8StringEncoding) {
+                        
+                        let decodedError = NSError(description: decodedErrorString as String)
+                        completionHandler(result: .Failure(decodedError))
+                        
+                } else {
+                    completionHandler(result: .Failure(error))
                 }
-                
-                completionHandler(result: .Failure(error), urlResponse: urlResponse)
-                return
             }
             
-            completionHandler(result: .Success(data), urlResponse: urlResponse)
-        })
+            break
+            
+        case .Failure(let error):
+            completionHandler(result: .Failure(error))
+            break
+        }
     }
     
     public func jsonTask(configureUrlRequest : ConfigureUrlRequestHandler? = nil, completionHandler : JsonTaskCompletionHandler) -> NSURLSessionDataTask? {
@@ -125,33 +167,7 @@ public extension Route {
             
             }, completionHandler: { (result, urlResponse) -> Void in
                 
-                switch result {
-                case .Success(let data):
-                    
-                    do
-                    {
-                        let jsonObject = try NSJSONSerialization.JSONObjectWithData(data, options: [])
-                        completionHandler(result: .Success(jsonObject))
-                        
-                    } catch let error as NSError
-                    {
-                        if error.code == 3840, // Invalid JSON format, may be straight text
-                            let decodedErrorString = NSString(data: data, encoding: NSUTF8StringEncoding) {
-                            
-                                let decodedError = NSError(description: decodedErrorString as String)
-                                completionHandler(result: .Failure(decodedError))
-                            
-                        } else {
-                            completionHandler(result: .Failure(error))
-                        }
-                    }
-                    
-                    break
-                    
-                case .Failure(let error):
-                    completionHandler(result: .Failure(error))
-                    break
-                }
+            self.handleJsonTaskCompletion(result, completionHandler: completionHandler)
         })
     }
 }
