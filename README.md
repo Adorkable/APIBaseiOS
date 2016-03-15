@@ -2,6 +2,7 @@ APIBase
 ===
 [![Build Status](http://img.shields.io/travis/Adorkable/APIBaseiOS.svg?branch=master&style=flat)](https://travis-ci.org/Adorkable/APIBaseiOS)
 [![codecov.io](https://img.shields.io/codecov/c/github/Adorkable/APIBaseiOS.svg)](https://codecov.io/github/Adorkable/APIBaseiOS?branch=master)
+[![codebeat badge](https://codebeat.co/badges/8e1916bc-559c-4ce0-a768-7cb308f53a63)](https://codebeat.co/projects/github-com-adorkable-apibaseios)
 [![Pod Platform](http://img.shields.io/cocoapods/p/AdorkableAPIBase.svg?style=flat)](http://cocoadocs.org/docsets/AdorkableAPIBase/)
 [![Pod License](http://img.shields.io/cocoapods/l/AdorkableAPIBase.svg?style=flat)](http://cocoadocs.org/docsets/AdorkableAPIBase/)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
