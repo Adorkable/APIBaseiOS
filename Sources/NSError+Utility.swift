@@ -44,17 +44,17 @@ extension NSError {
         return userInfo
     }
     
-    convenience init(domain : String, code : Int, description : String, underlyingError : NSError? = nil, failureReason : String? = nil, recoverySuggestion : String? = nil, recoveryOptions : [String]? = nil, fileName : String = __FILE__, functionName : String = __FUNCTION__, line : Int = __LINE__) {
+    convenience init(domain : String? = nil, code : Int = 0, description : String, underlyingError : NSError? = nil, failureReason : String? = nil, recoverySuggestion : String? = nil, recoveryOptions : [String]? = nil, fileName : String = __FILE__, functionName : String = __FUNCTION__, line : Int = __LINE__) {
+        
+        let useDomain : String
+        if let domain = domain {
+            useDomain = domain
+        } else {
+            useDomain = description
+        }
         
         let userInfo = NSError.userInfo(description, underlyingError: underlyingError, failureReason: failureReason, recoverySuggestion: recoverySuggestion, recoveryOptions: recoveryOptions, fileName: fileName, functionName: functionName, line: line)
         
-        self.init(domain: domain, code: code, userInfo: userInfo)
-    }
-    
-    convenience init(description : String, underlyingError : NSError? = nil, failureReason : String? = nil, recoverySuggestion : String? = nil, recoveryOptions : [String]? = nil, fileName : String = __FILE__, functionName : String = __FUNCTION__, line : Int = __LINE__) {
-        
-        let userInfo = NSError.userInfo(description, underlyingError: underlyingError, failureReason: failureReason, recoverySuggestion: recoverySuggestion, recoveryOptions: recoveryOptions, fileName: fileName, functionName: functionName, line: line)
-        
-        self.init(domain: description, code: 0, userInfo: userInfo)
+        self.init(domain: useDomain, code: 0, userInfo: userInfo)
     }
 }
