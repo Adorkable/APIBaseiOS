@@ -10,38 +10,38 @@ import Foundation
 
 internal let SubclassShouldOverrideString = "Subclass should override"
 
-internal let SubclassShouldOverrideUrl : NSURL? = NSURL(string: "subclassShouldOverride://asdf")
+internal let SubclassShouldOverrideUrl : URL? = URL(string: "subclassShouldOverride://asdf")
 
 public enum SuccessResult<T> {
-    case Success(T)
-    case Failure(NSError)
+    case success(T)
+    case failure(Error)
 }
 
-public typealias ConfigureUrlRequestHandler = (urlRequest : NSMutableURLRequest) -> Void
-public typealias DataTaskCompletionHandler = (result : SuccessResult<NSData>, urlResponse : NSURLResponse?) -> Void
-public typealias JsonTaskCompletionHandler = (result : SuccessResult<AnyObject>) -> Void
+public typealias ConfigureUrlRequestHandler = (_ urlRequest : inout URLRequest) -> Void
+public typealias DataTaskCompletionHandler = (_ result : SuccessResult<Data>, _ urlResponse : URLResponse?) -> Void
+public typealias JsonTaskCompletionHandler = (_ result : SuccessResult<AnyObject>) -> Void
 
 public protocol Route {
     // TODO: once Swift supports protocol class vars as this should be overridable (when inheriting from RouteBase for example)
-    var baseUrl : NSURL? { get }
+    var baseUrl : URL? { get }
     
-    var timeoutInterval : NSTimeInterval { get }
-    var cachePolicy : NSURLRequestCachePolicy  { get }
+    var timeoutInterval : TimeInterval { get }
+    var cachePolicy : NSURLRequest.CachePolicy  { get }
     
     var path : String { get }
     var query : String { get }
     static var httpMethod : String { get }
     var httpBody : String { get }
     
-    func buildUrl() -> NSURL?
+    func buildUrl() -> URL?
     
-    func dataTask(configureUrlRequest configureUrlRequest : ConfigureUrlRequestHandler?, completionHandler : DataTaskCompletionHandler) -> NSURLSessionDataTask?
-    func jsonTask(configureUrlRequest : ConfigureUrlRequestHandler?, completionHandler : JsonTaskCompletionHandler) -> NSURLSessionDataTask?
+    func dataTask(configureUrlRequest : ConfigureUrlRequestHandler?, completionHandler : @escaping DataTaskCompletionHandler) -> URLSessionDataTask?
+    func jsonTask(_ configureUrlRequest : ConfigureUrlRequestHandler?, completionHandler : @escaping JsonTaskCompletionHandler) -> URLSessionDataTask?
 }
 
 public extension Route {
     
-    func buildUrl() -> NSURL? {
+    func buildUrl() -> URL? {
         
         // TODO: proper way to tell clients of this library the reason for this failure
         guard self.path != SubclassShouldOverrideString else {
@@ -61,128 +61,126 @@ public extension Route {
             combinedPath += "?" + query
         }
         
-        return NSURL(string: combinedPath, relativeToURL: self.baseUrl)
+        return URL(string: combinedPath, relativeTo: self.baseUrl)
     }
     
-    internal func createURLRequest(url : NSURL) -> NSMutableURLRequest {
+    internal func createURLRequest(_ url : URL) -> URLRequest {
         
-        let result = NSMutableURLRequest(URL: url, cachePolicy: self.cachePolicy, timeoutInterval: self.timeoutInterval)
+        var result = URLRequest(url: url, cachePolicy: self.cachePolicy, timeoutInterval: self.timeoutInterval)
         result.setValue("text/plain", forHTTPHeaderField: "Content-Type")
         
-        result.HTTPMethod = self.dynamicType.httpMethod
+        result.httpMethod = type(of: self).httpMethod
         
         if self.httpBody != SubclassShouldOverrideString
         {
-            if let bodyData = self.httpBody.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+            if let bodyData = self.httpBody.data(using: String.Encoding.utf8, allowLossyConversion: false)
             {
-                result.HTTPBody = bodyData
-                result.setValue("\(bodyData.length)", forHTTPHeaderField: "Content-Length")
+                result.httpBody = bodyData
+                result.setValue("\(bodyData.count)", forHTTPHeaderField: "Content-Length")
             }
         }
         
         return result
     }
     
-    internal func handleDataTaskCompletion(data : NSData?, urlResponse : NSURLResponse?, error: NSError?, completionHandler : DataTaskCompletionHandler) {
+    internal func handleDataTaskCompletion(_ data : Data?, urlResponse : URLResponse?, error: Error?, completionHandler : DataTaskCompletionHandler) {
         
         guard let data = data else {
             
             guard let error = error else {
-                completionHandler(result: .Failure(NSError(description: "Response is empty") ), urlResponse: urlResponse)
+                completionHandler(.failure(NSError(description: "Response is empty") ), urlResponse)
                 return
             }
             
-            completionHandler(result: .Failure(error), urlResponse: urlResponse)
+            completionHandler(.failure(error), urlResponse)
             return
         }
         
-        completionHandler(result: .Success(data), urlResponse: urlResponse)
+        completionHandler(.success(data), urlResponse)
     }
     
-    public func dataTask(configureUrlRequest configureUrlRequest : ConfigureUrlRequestHandler? = nil, completionHandler : DataTaskCompletionHandler) -> NSURLSessionDataTask? {
+    public func dataTask(configureUrlRequest : ConfigureUrlRequestHandler? = nil, completionHandler : @escaping DataTaskCompletionHandler) -> URLSessionDataTask? {
         
         guard let url = self.buildUrl() else {
             // TODO: notify client?
             return nil
         }
         
-        guard self.dynamicType.httpMethod != SubclassShouldOverrideString else {
+        guard type(of: self).httpMethod != SubclassShouldOverrideString else {
             // TODO: notify client
             return nil
         }
         
-        let urlRequest = self.createURLRequest(url)
+        var urlRequest = self.createURLRequest(url)
         
         if let configureUrlRequest = configureUrlRequest {
-            configureUrlRequest(urlRequest: urlRequest)
+            configureUrlRequest(&urlRequest)
         }
         
-        let urlSession = NSURLSession.sharedSession()
-        
-        return urlSession.dataTaskWithRequest(urlRequest, completionHandler: { (data, urlResponse, error) -> Void in
-            
+        let urlSession = URLSession.shared
+
+        return urlSession.dataTask(with: urlRequest, completionHandler: { (data, urlResponse, error) in
             self.handleDataTaskCompletion(data, urlResponse: urlResponse, error: error, completionHandler: completionHandler)
         })
     }
     
-    internal func handleJsonTaskCompletion(data : SuccessResult<NSData>, completionHandler : JsonTaskCompletionHandler) {
+    internal func handleJsonTaskCompletion(_ data : SuccessResult<Data>, completionHandler : JsonTaskCompletionHandler) {
         switch data {
-        case .Success(let data):
+        case .success(let data):
             
             do
             {
-                let jsonObject = try NSJSONSerialization.JSONObjectWithData(data, options: [])
-                completionHandler(result: .Success(jsonObject))
-                
+                let jsonObject = try JSONSerialization.jsonObject(with: data, options: []) as AnyObject
+                completionHandler(SuccessResult<AnyObject>.success(jsonObject))
             } catch let error as NSError
             {
                 if error.code == 3840, // Invalid JSON format, may be straight text
-                    let decodedErrorString = NSString(data: data, encoding: NSUTF8StringEncoding) {
+                    let decodedErrorString = NSString(data: data, encoding: String.Encoding.utf8.rawValue) {
                         
                         let decodedError = NSError(description: decodedErrorString as String)
-                        completionHandler(result: .Failure(decodedError))
+                        completionHandler(.failure(decodedError))
                         
                 } else {
-                    completionHandler(result: .Failure(error))
+                    completionHandler(.failure(error))
                 }
             }
             
             break
             
-        case .Failure(let error):
-            completionHandler(result: .Failure(error))
+        case .failure(let error):
+            completionHandler(.failure(error))
             break
         }
     }
     
-    public func jsonTask(configureUrlRequest : ConfigureUrlRequestHandler? = nil, completionHandler : JsonTaskCompletionHandler) -> NSURLSessionDataTask? {
+    public func jsonTask(_ configureUrlRequest : ConfigureUrlRequestHandler? = nil, completionHandler : @escaping JsonTaskCompletionHandler) -> URLSessionDataTask? {
         
-        return self.dataTask(configureUrlRequest: { (urlRequest : NSMutableURLRequest) -> Void in
+        return self.dataTask(configureUrlRequest: { (urlRequest : inout URLRequest) -> Void in
             
             if let configureUrlRequest = configureUrlRequest
             {
-                configureUrlRequest(urlRequest: urlRequest)
+                configureUrlRequest(&urlRequest)
             }
             urlRequest.setValue("application/json", forHTTPHeaderField: "Accept") // TODO: should this go before or after the calls closer to the client?
             
-            }, completionHandler: { (result, urlResponse) -> Void in
-                
+        }, completionHandler: { (result, urlResponse) -> Void in
+
             self.handleJsonTaskCompletion(result, completionHandler: completionHandler)
         })
     }
 }
 
 // TODO: currently Generic Protocols are not supported
-public class RouteBase<T : API>: NSObject, Route {
+open class RouteBase<T : API>: NSObject, Route {
     
-    public var baseUrl : NSURL? {
-        return T.baseUrl
+    open var baseUrl : URL? {
+        return T.baseUrl as URL?
     }
     
-    public let timeoutInterval : NSTimeInterval
-    public let cachePolicy : NSURLRequestCachePolicy
+    open let timeoutInterval : TimeInterval
+    open let cachePolicy : NSURLRequest.CachePolicy
     
-    public init(timeoutInterval : NSTimeInterval = T.timeoutInterval, cachePolicy : NSURLRequestCachePolicy = T.cachePolicy) {
+    public init(timeoutInterval : TimeInterval = T.timeoutInterval, cachePolicy : NSURLRequest.CachePolicy = T.cachePolicy) {
         self.timeoutInterval = timeoutInterval
         self.cachePolicy = cachePolicy
         
@@ -190,26 +188,26 @@ public class RouteBase<T : API>: NSObject, Route {
     }
     
     // TODO: Figure out better abstact function mechanism
-    public var path : String {
+    open var path : String {
         return SubclassShouldOverrideString
     }
     
     // TODO: Figure out better abstact function mechanism
-    public var query : String {
+    open var query : String {
         return SubclassShouldOverrideString
     }
     
     // TODO: Figure out better abstact function mechanism
-    public class var httpMethod : String {
+    open class var httpMethod : String {
         return SubclassShouldOverrideString
     }
     
     // TODO: Figure out better abstact function mechanism
-    public var httpBody : String {
+    open var httpBody : String {
         return SubclassShouldOverrideString
     }
     
-    public class func addParameter(inout addTo : String, name : String, value : String) {
+    open class func addParameter(_ addTo : inout String, name : String, value : String) {
         
         T.addParameter(&addTo, name: name, value: value)
     }

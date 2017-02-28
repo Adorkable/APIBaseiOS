@@ -15,15 +15,15 @@ extension NSError {
     
     // TODO: support NSLocalizedString
     // TODO: support Recovery Attempter
-    static func userInfo(description : String, underlyingError : NSError? = nil, failureReason : String? = nil, recoverySuggestion : String? = nil, recoveryOptions : [String]? = nil, fileName : String = __FILE__, functionName : String = __FUNCTION__, line : Int = __LINE__) -> [String : AnyObject] {
+    static func userInfo(_ description : String, underlyingError : NSError? = nil, failureReason : String? = nil, recoverySuggestion : String? = nil, recoveryOptions : [String]? = nil, fileName : String = #file, functionName : String = #function, line : Int = #line) -> [String : AnyObject] {
         
         var userInfo = [
             NSFilePathErrorKey : fileName,
             NSFunctionErrorKey : functionName,
-            NSLineErrorKey : NSNumber(integer: line),
+            NSLineErrorKey : NSNumber(value: line as Int),
             
             NSLocalizedDescriptionKey : description
-        ]
+        ] as [String : Any]
         
         if let underlyingError = underlyingError {
             userInfo[NSUnderlyingErrorKey] = underlyingError
@@ -41,10 +41,10 @@ extension NSError {
             userInfo[NSLocalizedRecoveryOptionsErrorKey] = recoveryOptions
         }
 
-        return userInfo
+        return userInfo as [String : AnyObject]
     }
     
-    convenience init(domain : String? = nil, code : Int = 0, description : String, underlyingError : NSError? = nil, failureReason : String? = nil, recoverySuggestion : String? = nil, recoveryOptions : [String]? = nil, fileName : String = __FILE__, functionName : String = __FUNCTION__, line : Int = __LINE__) {
+    convenience init(domain : String? = nil, code : Int = 0, description : String, underlyingError : NSError? = nil, failureReason : String? = nil, recoverySuggestion : String? = nil, recoveryOptions : [String]? = nil, fileName : String = #file, functionName : String = #function, line : Int = #line) {
         
         let useDomain : String
         if let domain = domain {

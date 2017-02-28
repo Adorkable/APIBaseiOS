@@ -13,14 +13,14 @@ public protocol API {
     static var requestProtocol : String { get }
     static var domain : String { get }
     static var port : String { get }
-    static var baseUrl : NSURL? { get }
+    static var baseUrl : URL? { get }
     
-    static var cachePolicy : NSURLRequestCachePolicy { get }
-    static var timeoutInterval : NSTimeInterval { get }
+    static var cachePolicy : NSURLRequest.CachePolicy { get }
+    static var timeoutInterval : TimeInterval { get }
     
-    static func encodeString(string : String) -> String?
+    static func encodeString(_ string : String) -> String?
     
-    static func addParameter(inout addTo : String, name : String, value : String)
+    static func addParameter(_ addTo : inout String, name : String, value : String)
 }
 
 public extension API {
@@ -30,29 +30,29 @@ public extension API {
         }
     }
     
-    static var baseUrl : NSURL? {
+    static var baseUrl : URL? {
         get {
-            return NSURL(string: self.requestProtocol + "://" + self.domain + ":" + self.port)
+            return URL(string: self.requestProtocol + "://" + self.domain + ":" + self.port)
         }
     }
     
-    static var cachePolicy : NSURLRequestCachePolicy {
+    static var cachePolicy : NSURLRequest.CachePolicy {
         get {
-            return NSURLRequestCachePolicy.ReloadRevalidatingCacheData
+            return NSURLRequest.CachePolicy.reloadRevalidatingCacheData
         }
     }
-    static var timeoutInterval : NSTimeInterval {
+    static var timeoutInterval : TimeInterval {
         get {
             return 30
         }
     }
     
-    static func encodeString(string : String) -> String? {
+    static func encodeString(_ string : String) -> String? {
         
-        return string.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+        return string.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
     }
     
-    static func addParameter(inout addTo : String, name : String, value : String) {
+    static func addParameter(_ addTo : inout String, name : String, value : String) {
         
         guard name.characters.count > 0 else { return }
         guard value.characters.count > 0 else { return }
